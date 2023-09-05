@@ -24,10 +24,10 @@ const Profile = () => {
     }
 
     return (
-        <div className="profile">
-            <div className="profile__container">
+        <main className="profile">
+            <section className="profile__container">
 
-                <h2 className="profile__title">Привет, Виталий!</h2>
+                <h1 className="profile__title">Привет, Виталий!</h1>
                 <form className="profile__form" onSubmit={handleSubmit}>
                     <fieldset className="profile__info">
                         <div className="profile__container-form">
@@ -61,14 +61,14 @@ const Profile = () => {
                     </fieldset>
                     <div className="profile__buttons" >
                         <button className="profile__edit-button" type='button' onClick={handleEditClick} hidden={isHidden}>Редактировать</button>
-                        <NavLink className="profile__signout-button" hidden={isHidden} to='/signup'>Выйти из аккаунта</NavLink>
+                        <NavLink className="profile__signout-button" hidden={isHidden} to='/'>Выйти из аккаунта</NavLink>
                     </div>
                     <button className="profile__save-button" type='submit' onClick={handleSaveClick} hidden={!isHidden}>Сохранить</button>
                 </form>
-            </div>
+            </section>
 
 
-        </div>
+        </main>
 
     );
 }

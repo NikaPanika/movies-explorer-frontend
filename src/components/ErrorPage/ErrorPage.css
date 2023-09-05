@@ -1,6 +1,7 @@
 .error-page {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .error-page__title {
@@ -17,12 +18,12 @@
     font-weight: 400;
     line-height: normal;
     margin: 0;
+    margin-top: 10px;
 }
 
 .error-page__box {
     margin-top: 329px;
-    margin-bottom: calc(100vh - 496px);
-
+    flex: 1;
 }
 
 .error-page__link {
@@ -33,6 +34,8 @@
     margin: 0;
     text-decoration: none;
     color: black;
+    flex-shrink: 0;
+    margin-bottom: 30px;
 }
 
 .error-page__link:hover {
@@ -48,16 +51,17 @@
     
     .error-page__text {
         font-size: 16px;
+        margin-top: 5px;
     }
     
     .error-page__box {
         margin-top: 408px;
-        margin-bottom: calc(100vh - 816px);
     
     }
     
     .error-page__link {
         font-size: 14px;
+        margin-bottom: 222px;
     }
     
 }
@@ -66,7 +70,9 @@
     
     .error-page__box {
         margin-top: 246px;
-        margin-bottom: calc(100vh - 516px);
     }
 
+    .error-page__link {
+        margin-bottom: 60px;
+    }
 }

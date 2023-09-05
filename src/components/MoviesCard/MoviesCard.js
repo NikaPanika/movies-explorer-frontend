@@ -6,10 +6,10 @@ function MoviesCard({
 }) {
 
     return (
-        <section className="card">
+        <div className="card">
             <div className="card__container">
                 <img className="card__image" src={film.image} alt={film.name} />
-                <button className={`
+                <button className={`card__button
                 ${film.isAdd && !isSaved ? ' card__button_saved' : ''}
                 ${!film.isAdd && !isSaved ? ' card__button_unsaved' : ''}
                 ${isSaved ? ' card__button_remove' : ''}`
@@ -27,7 +27,7 @@ function MoviesCard({
                     {film.duration}
                 </p>
             </div>
-        </section>
+        </div>
     );
 }
 

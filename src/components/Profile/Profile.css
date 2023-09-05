@@ -6,7 +6,7 @@
 .profile__title {
     margin: 0;
     margin-bottom: 63px;
-    padding-top: 70px;
+    padding-top: 68px;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -37,11 +37,16 @@
     text-align: end;
 }
 
+.profile__input:focus {
+    outline: 2px solid #F3C1F8;
+}
+
+
 .profile__info {
     width: 260px;
     margin: auto;
     padding: 0;
-    padding-bottom: calc(100vh - 387px);
+    padding-bottom: 379px;
     border: 0;
 }
 
@@ -109,6 +114,7 @@
     padding-top: 13px;
     padding-bottom: 14px;
     min-width: 260px;
+    margin-bottom: 50px;
 }
 
 .profile__save-button:hover {
@@ -127,7 +133,11 @@
 
     .profile__info {
         width: 410px;
-        padding-bottom: calc(100vh - 814px);
+        padding-bottom: 206px;
+    }
+
+    .profile__buttons {
+        padding-bottom: 269px;
     }
 
     .profile__edit-button {
@@ -155,7 +165,10 @@
 
     .profile__info {
         width: 410px;
-        padding-bottom: calc(100vh - 480px);
+        padding-bottom: 220px;
     }
 
+    .profile__buttons {
+        padding-bottom: 70px;
+    }
 }

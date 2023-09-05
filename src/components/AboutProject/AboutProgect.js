@@ -20,13 +20,13 @@ const AboutProgect = () => {
 
       <div className="aboutprog__diagram">
         <div className="little-column">
-          <p className="aboutprog__diagram_black">1 неделя</p>
-          <p className="aboutprog__diagram_white">Back-end</p>
+          <p className="little-column__diagram little-column__diagram_black">1 неделя</p>
+          <p className="little-column__diagram little-column__diagram_white">Back-end</p>
           
         </div>
         <div className="big-column">
-        <p className="aboutprog__diagram_gray">4 недели</p>
-          <p className="aboutprog__diagram_white">Front-end</p>
+        <p className="big-column__diagram big-column__diagram_gray">4 недели</p>
+          <p className="big-column__diagram big-column__diagram_white">Front-end</p>
         </div>
       </div>
     </section>

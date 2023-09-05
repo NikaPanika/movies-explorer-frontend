@@ -15,10 +15,10 @@ function Popup({ isOpen, onClose }) {
                     </div>
 
                     <div className="popup__profile">
-                        <NavLink className="popup__navlink last" to="/profile" onClick={onClose}>
-                            <span className="navigation__account">Аккаунт</span>
+                        <NavLink className="popup__navlink popup__navlink_last" to="/profile" onClick={onClose}>
+                            <span className="popup__account">Аккаунт</span>
                         </NavLink>
-                        <button className="popup__menu-button" />
+                        <button className="popup__menu-button" type="button"/>
                     </div>
                 </div>
             </div>

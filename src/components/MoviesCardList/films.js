@@ -1,15 +1,16 @@
-import pic1 from '../../images/pic__COLOR_pic.svg';
-import pic2 from '../../images/pic__COLOR_pic (1).svg';
-import pic3 from '../../images/pic__COLOR_pic (2).svg';
-import pic4 from '../../images/pic__COLOR_pic (3).svg';
-import pic5 from '../../images/pic__COLOR_pic (4).svg';
-import pic6 from '../../images/pic__COLOR_pic (5).svg';
-import pic7 from '../../images/pic__COLOR_pic (6).svg';
-import pic8 from '../../images/pic__COLOR_pic (7).svg';
-import pic9 from '../../images/pic__COLOR_pic (8).svg';
-import pic10 from '../../images/pic__COLOR_pic (9).svg';
-import pic11 from '../../images/pic__COLOR_pic (10).svg';
-import pic12 from '../../images/pic__COLOR_pic (11).svg';
+import pic1 from '../../images/Film_1.png';
+import pic2 from '../../images/Film_2.png';
+import pic3 from '../../images/Film_3.png';
+import pic4 from '../../images/Film_4.png';
+import pic5 from '../../images/Film_5.png';
+import pic6 from '../../images/Film_6.png';
+import pic7 from '../../images/Film_7.png';
+import pic8 from '../../images/Film_8.png';
+import pic9 from '../../images/Film_9.png';
+import pic10 from '../../images/Film_10.png';
+import pic11 from '../../images/Film_11.png';
+import pic12 from '../../images/Film_12.png';
+
 const films = [
     {
         id: 1,

@@ -38,8 +38,8 @@
     top: 14px;
     right: 14px;
     background-image: url(../../images/Group.svg);
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -54,13 +54,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 144px;
+    flex: 1;
+}
+
+.popup__account {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
 }
 
 .popup__menu {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80%;
+    height: 100vh;
 }
 
 .popup__navlink {
@@ -76,18 +85,21 @@
     margin-bottom: 17px;
 }
 
-.popup__navlink_active{
+.popup__navlink_active {
     transition: 0.4s;
     border-bottom: 2px solid #000;
 }
 
-.popup__profile{
+.popup__profile {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
+    margin-bottom: 50px;
+    align-items: center;
 }
 
-.popup__menu-button{
+.popup__menu-button {
     background-color: #F9F9F9;
     border-radius: 6px;
     background-image: url(../../images/profile.svg);
@@ -96,29 +108,47 @@
     border: 0;
     background-repeat: no-repeat;
     background-position: center;
+    margin-left: 13px;
 }
 
-.popup__navlink.last{
+.popup__navlink_last {
     margin: 0;
     padding: 0;
 }
-    
+
 
 @media screen and (min-width: 768px) {
-    
+
     .popup__container {
         width: 520px;
     }
-    
+
     .popup__close-button {
         position: absolute;
         top: 25px;
         right: 25px;
     }
-    
+
     .popup__navlink {
         padding-bottom: 4px;
         margin-bottom: 24px;
     }
-    
+
+    .popup__navlink_last {
+        margin: 0;
+        padding: 0;
+    }
+
+    .popup__navigation {
+        margin-top: 159px;
+    }
+
+    .popup__profile {
+        margin-bottom: 92px;
+    }
+
+    .popup__account {
+        text-align: center;
+    }
+
 }

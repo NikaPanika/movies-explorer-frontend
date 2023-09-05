@@ -1,7 +1,7 @@
 .navigation {
     display: flex;
     align-items: center;
-    margin-right: 16px;
+    margin-right: 15px;
 }
 
 .navigation__link {
@@ -77,21 +77,21 @@
     height: 44px;
     display: block;
     cursor: pointer;
-    margin-right: 16px;
+    margin-right: 8px;
 }
 
 .menu-burger span,
 .menu-burger:after,
 .menu-burger:before {
     height: 3px;
-    width: 28px;
+    width: 22px;
     position: absolute;
     background: black;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .menu-burger span {
-    top: 21px;
+    top: 20px;
 }
 
 .menu-burger:after,
@@ -100,7 +100,7 @@
 }
 
 .menu-burger:after {
-    bottom: 9px;
+    bottom: 12px;
 }
 
 .menu-burger:before {
@@ -129,15 +129,14 @@
         margin-right: 0;
     }
     
+    .menu-burger {
+        margin-right: 12px;
+    }
 }
 
 @media screen and (min-width: 1280px) {
     .navigation__menu {
         display: flex;
-    }
-
-    .navigation__entrance {
-        margin-right: 40px;
     }
 
     .menu-burger {

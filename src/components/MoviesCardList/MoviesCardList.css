@@ -4,7 +4,7 @@
     justify-content: center;
     border-top: 1px solid #E8E8E8;
     margin: 0 10px;
-    padding-top: 50px;
+    padding-top: 51px;
 }
 
 .cards__list {
@@ -12,11 +12,12 @@
     display: grid;
     grid-template-columns: repeat(1, auto);
     gap: 0;
-
+    list-style: none;
+    padding: 0;
 }
 
 .cards__more {
-    margin: 50px auto 80px;
+    margin: 28px auto 100px;
     min-width: 240px;
     min-height: 36px;
     background-color: #F9F9F9;
@@ -37,6 +38,8 @@
     .cards__more {
         min-width: 320px;
         min-height: 36px;
+        margin-top: 10px;
+        margin-bottom: 80px;
     }
 
     .cards__list {
@@ -49,11 +52,15 @@
 @media screen and (min-width: 1280px) {
 
     .cards {
-        margin: 70px 70px;
+        margin: 70px 70px 0;
     }
 
     .cards__list {
         grid-template-columns: repeat(3, auto);
+    }
+
+    .cards__more {
+        margin-top: 15px;
     }
 
 }

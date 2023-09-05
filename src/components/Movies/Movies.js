@@ -6,10 +6,10 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 const Movies = ({ isSaved }) => {
 
     return (
-        <div className="movies">
+        <main className="movies">
             <SearchForm />
             <MoviesCardList isSaved={isSaved}/>
-        </div>
+        </main>
     );
 };
 

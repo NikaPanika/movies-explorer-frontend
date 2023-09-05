@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 34px;
 }
 
 .card__info {
     display: flex;
     flex-direction: row;
-    margin-top: 16px;
+    margin-top: 14px;
     justify-content: space-between;
 }
 
@@ -121,11 +121,11 @@
 @media screen and (min-width: 768px) {
 
     .card {
-        margin-bottom: 47px;
+        margin-bottom: 48px;
     }
 
     .card__info {
-        margin-top: 14px;
+        margin-top: 20px;
     }
 
     .card__title {
@@ -156,19 +156,26 @@
 @media screen and (min-width: 1280px) {
 
     .card {
-        margin-bottom: 60px;
+        margin-bottom: 58px;
     }
 
     .card__info {
-        margin-top: 25px;
+        margin-top: 10px;
     }
 
     .card__title {
         font-size: 13px;
+        margin-left: 12px;
     }
 
     .card__image {
         max-width: 100%;
+    }
+
+    .card__duration {
+        margin-right: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
 }

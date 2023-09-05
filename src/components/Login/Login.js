@@ -3,14 +3,14 @@ import Form from '../Form/Form'
 
 const Login = ({serverError}) => {
     return (
-        <div className="login">
+        <main className="login">
             <Form
                 name="login"
                 title="Рады видеть!"
                 buttonText="Войти"
                 inputs={[
                     {
-                        id: 0,
+                        key: 0,
                         type: 'email',
                         name: 'email',
                         required: 'required',
@@ -20,7 +20,7 @@ const Login = ({serverError}) => {
                         value: 'pochta@yandex.ru',
                     },
                     {
-                        id: 1,
+                        key: 1,
                         type: 'password',
                         name: 'password',
                         required: 'required',
@@ -36,7 +36,7 @@ const Login = ({serverError}) => {
             >
 
             </Form>
-        </div>
+        </main>
 
     );
 }

@@ -1,7 +1,7 @@
 .footer {
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: 79px;
+    margin-top: 58px;
     margin-bottom: 20px;
 }
 
@@ -20,10 +20,18 @@
 .footer__container {
     display: flex;
     flex-direction: column;
+    margin-top: 26px;
 }
 
 .footer__info {
-    margin-bottom: 30px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 18px;
+    list-style: none;
+}
+
+.footer__element{
+    margin-bottom: 9px;
 }
 
 .footer__yandex {
@@ -34,7 +42,13 @@
     font-weight: 400;
     line-height: normal;
     margin-top: 30px;
-    margin-bottom: 12px;
+    text-decoration: none;
+    color: black;
+}
+
+.footer__yandex:hover{
+    cursor: pointer;
+    opacity: 0.7;
 }
 
 .footer__git {
@@ -44,6 +58,13 @@
     font-weight: 400;
     line-height: normal;
     margin: 0;
+    text-decoration: none;
+    color: black;
+}
+
+.footer__git:hover{
+    cursor: pointer;
+    opacity: 0.7;
 }
 
 .footer__date {
@@ -60,6 +81,7 @@
     .footer {
         padding-left: 30px;
         padding-right: 30px;
+        margin-top: 78px;
     }
     
     .footer__title {
@@ -95,7 +117,7 @@
     .footer__date {
         order: -1;
         color: black;
-        font-size: 12px;
+        font-size: 13px;
     }
 }
 

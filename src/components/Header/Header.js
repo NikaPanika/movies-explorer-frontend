@@ -8,7 +8,7 @@ const Header = ({ isLogged, onBurgerClick }) => {
     const { pathname } = useLocation();
 
     return (
-        <header className={`header ${pathname === '/' ? ' header__main' : ''}`}>
+        <header className={`header ${pathname === '/' ? ' header_main' : ''}`}>
             <NavLink className="header__link" to="/">
                 <img className="header__logo" src={logo} alt="Логотип" />
             </NavLink>

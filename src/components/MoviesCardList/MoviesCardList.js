@@ -3,66 +3,68 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import { useState, useEffect } from 'react';
 import films from './films'
 
-const MoviesCardList = ({isSaved}) => {
+const MoviesCardList = ({ isSaved }) => {
 
-    const [ amountOfCards, setAmountOfCards ] = useState(12);
-    const [ isAllCards, setIsAllCards ] = useState(false);
-  
-    function setInitialNumber() {
-      const windowWidth = window.innerWidth;
-  
-      if (windowWidth >= 1024) {
-        setAmountOfCards(12)
-      };
-      if ((windowWidth >= 768) && (windowWidth < 1024)) {
-        setAmountOfCards(8)
-      };
-      if (windowWidth < 768) {
-        setAmountOfCards(5)
-      };
-  
-    }
-  
-    function addCards() {
+  const [amountOfCards, setAmountOfCards] = useState(12);
+  const [isAllCards, setIsAllCards] = useState(false);
 
-        setAmountOfCards(amountOfCards + 3);
-    }
-  
-    function checkIsAllCards() {
-  
-      films.length < amountOfCards
+  function setInitialNumber() {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth >= 1024) {
+      setAmountOfCards(12)
+    };
+    if ((windowWidth >= 768) && (windowWidth < 1024)) {
+      setAmountOfCards(8)
+    };
+    if (windowWidth < 768) {
+      setAmountOfCards(5)
+    };
+
+  }
+
+  function addCards() {
+
+    setAmountOfCards(amountOfCards + 3);
+  }
+
+  function checkIsAllCards() {
+
+    films.length < amountOfCards
       ?
       setIsAllCards(true)
       :
       setIsAllCards(false)
-  
-    }
-  
-    useEffect(() => {
-  
-      checkIsAllCards();
-  
-    })
-  
-    useEffect(() => {
-  
-      setInitialNumber()
-  
-    }, [])
-    
+
+  }
+
+  useEffect(() => {
+
+    checkIsAllCards();
+
+  })
+
+  useEffect(() => {
+
+    setInitialNumber()
+
+  }, [])
+
   return (
     <section className="cards">
-        <div className="cards__list">
-          {films.slice(0, amountOfCards).map((film) => (
+      <ul className="cards__list">
+        {films.slice(0, amountOfCards).map((film) => (
+          <li className="cards__element" key={film.id}>
             <MoviesCard
               key={film.id}
               film={film}
               isSaved={isSaved}
             />
-          ))}
-        </div>
+          </li>
+        ))}
+      </ul>
 
-      <button className="cards__more" onClick={addCards} hidden={isAllCards}>Ещё</button>
+      <button className="cards__more" type="button" onClick={addCards} hidden={isAllCards}>Ещё</button>
 
     </section>
   );

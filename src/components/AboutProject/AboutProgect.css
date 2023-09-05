@@ -8,7 +8,6 @@
     margin: 0;
     font-size: 18px;
     letter-spacing: -0.72px;
-    
     padding-bottom: 28px;
     border-bottom: 1px solid #000;
     text-align: left;
@@ -32,15 +31,16 @@
     margin-bottom: 16px;
 }
 
+.aboutprog__subtitle:last-child{
+    margin-top: 60px;
+}
+
 .aboutprog__description {
     text-align: start;
     font-size: 11px;
     line-height: 16px;
     margin: 0;
-}
-
-.aboutprog__description:last-of-type {
-    margin-bottom: 60px;
+    margin-bottom: 58px;
 }
 
 .little-column {
@@ -61,7 +61,7 @@
     display: flex;
 }
 
-.aboutprog__diagram_black {
+.little-column__diagram_black {
     background-color: #000;
     color: white;
     margin: 0;
@@ -70,7 +70,7 @@
     font-size: 11px;
 }
 
-.aboutprog__diagram_gray {
+.big-column__diagram_gray {
     background-color: #F2F2F2;
     margin: 0;
     padding-top: 11px;
@@ -78,7 +78,16 @@
     font-size: 11px;
 }
 
-.aboutprog__diagram_white {
+.little-column__diagram_white {
+    color: #A0A0A0;
+    margin: 0;
+    font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 70px;
+    font-size: 11px;
+}
+
+.big-column__diagram_white{
     color: #A0A0A0;
     margin: 0;
     font-weight: 500;
@@ -129,28 +138,34 @@
 
     .little-column {
         flex-grow: 140;
+        min-width: 140px;
     }
     
     .big-column {
         flex-grow: 528;
+        min-width: 528px;
     }
 
-    .aboutprog__diagram_black {
+    .little-column__diagram_black {
         padding-top: 9px;
         padding-bottom: 9px;
         font-size: 14px;
     }
     
-    .aboutprog__diagram_gray {
+    .big-column__diagram_gray {
         padding-top: 9px;
         padding-bottom: 9px;
         font-size: 14px;
     }
+
+    .big-column__diagram_white{
+        padding-top: 12px;
+        padding-bottom: 90px;
+        font-size: 14px;
+    }
     
-    .aboutprog__diagram_white {
-        color: #A0A0A0;
-        margin: 0;
-        padding-top: 14px;
+    .little-column__diagram_white {
+        padding-top: 12px;
         padding-bottom: 90px;
         font-size: 14px;
     }
@@ -183,12 +198,21 @@
 
     .little-column {
         flex-grow: 228;
+        min-width: 228px;
     }
     
     .big-column {
         flex-grow: 912;
+        min-width: 912px;
     }
 
+    .big-column__diagram_white{
+        padding-bottom: 110px;
+    }
+    
+    .little-column__diagram_white {
+        padding-bottom: 110px;
+    }
     
     .aboutprog__diagram_white {
         padding-bottom: 110px;

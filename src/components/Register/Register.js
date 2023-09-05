@@ -3,10 +3,8 @@ import Form from '../Form/Form'
 
 const Register = ({ serverError}) => {
 
-
-    
     return (
-        <div className="register">
+        <main className="register">
             <Form
                 name="register"
                 title="Добро пожаловать!"
@@ -55,7 +53,7 @@ const Register = ({ serverError}) => {
             >
 
             </Form>
-        </div>
+        </main>
 
     );
 }

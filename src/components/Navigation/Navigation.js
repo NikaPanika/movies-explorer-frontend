@@ -22,7 +22,7 @@ const Navigation = ({ isLogged, onBurgerClick }) => {
                             <NavLink className="navigation__navlink" to="/profile" >
                                 <span className="navigation__account">Аккаунт</span>
                             </NavLink>
-                            <button className="navigation__menu-button" />
+                            <button className="navigation__menu-button" type="button"/>
                         </div>
                     </div>
 

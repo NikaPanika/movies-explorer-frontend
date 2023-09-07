@@ -85,6 +85,11 @@
     margin-bottom: 17px;
 }
 
+.popup__navlink:hover {
+    opacity: 0,7;
+    cursor: pointer;
+}
+
 .popup__navlink_active {
     transition: 0.4s;
     border-bottom: 2px solid #000;

@@ -118,6 +118,11 @@
     opacity: .7;
 }
 
+.card__more:hover{
+    cursor: pointer;
+    opacity: .7;
+}
+
 @media screen and (min-width: 768px) {
 
     .card {

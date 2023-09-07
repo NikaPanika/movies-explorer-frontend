@@ -80,6 +80,10 @@
     margin-right: 8px;
 }
 
+.menu-burger:hover{
+    opacity: 0.7;
+}
+
 .menu-burger span,
 .menu-burger:after,
 .menu-burger:before {

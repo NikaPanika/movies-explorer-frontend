@@ -11,6 +11,8 @@
 
 .form__footer {
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .form__logo-link {
@@ -102,6 +104,13 @@
     opacity: 0.7;
 }
 
+.form__button-submit:disabled{
+    background-color: #F8F8F8;
+    color: #C2C2C2;
+    cursor: auto;
+    opacity: 1;
+}
+
 .form__navigation {
     display: flex;
     justify-content: center;
@@ -132,6 +141,16 @@
 .form__navlink:hover {
     cursor: pointer;
     opacity: 0.7;
+}
+
+.form__error-message {
+    color: #FF004C;
+    text-align: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 20px;
 }
 
 @media screen and (min-width: 768px) {

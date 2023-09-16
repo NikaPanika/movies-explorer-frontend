@@ -3,6 +3,7 @@
     flex-direction: column;
     position: relative;
     margin-bottom: 34px;
+    width: 300px;
 }
 
 .card__info {
@@ -39,6 +40,7 @@
 
 .card__container {
     position: relative;
+    
 }
 
 .card__image:hover {
@@ -56,9 +58,10 @@
 }
 
 .card__image {
-    max-width: 300px;
     position: relative;
     border-radius: 6px;
+    width: 300px;
+    height: 168px;
 }
 
 .card__button_unsaved {
@@ -118,10 +121,7 @@
     opacity: .7;
 }
 
-.card__more:hover{
-    cursor: pointer;
-    opacity: .7;
-}
+
 
 @media screen and (min-width: 768px) {
 

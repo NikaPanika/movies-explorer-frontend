@@ -1,22 +1,32 @@
 import './SearchForm.css';
-import { useState } from 'react';
-import lens from '../../images/icon.svg'
+import { useState, useEffect } from 'react';
+import lens from '../../images/icon.svg';
 
-const SearchForm = () => {
+const SearchForm = ({ handleGetMovies, filmsInputSearch, handleOnChange, isOn }) => {
 
-    const [isOn, setIsOn] = useState(false);
+    const [inputSearch, setInputSearch] = useState('');
 
-    function handleOnChange() {
-        setIsOn(!isOn);
+    function handleInputChange(evt) {
+        setInputSearch(evt.target.value);
     }
+
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        handleGetMovies(inputSearch);
+        console.log(inputSearch)
+    }
+
+    useEffect(() => {
+        setInputSearch(filmsInputSearch);
+    }, [filmsInputSearch]);
 
     return (
         <section>
             <form className="search">
                 <div className="search__container">
                     <img className="search__lens" src={lens} alt="лупа" />
-                    <input className="search__input" placeholder="Фильм" type="text" defaultValue='' required />
-                    <button type="submit" className="search__button" >Найти</button>
+                    <input className="search__input" placeholder="Фильм" type="text" value={inputSearch || ''} onChange={handleInputChange} required />
+                    <button type="submit" className="search__button" onClick={handleSubmit}>Найти</button>
                 </div>
                 <div className="search__short-films">
                     <label className="search__label">

@@ -1,9 +1,16 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useState, useEffect } from 'react';
-import films from './films'
+import { useLocation } from 'react-router-dom';
 
-const MoviesCardList = ({ isSaved }) => {
+const MoviesCardList = ({
+  films,
+  currentMovies,
+  saveMovies,
+  savedFilms,
+  deleteMovie }) => {
+
+  const { pathname } = useLocation();
 
   const [amountOfCards, setAmountOfCards] = useState(12);
   const [isAllCards, setIsAllCards] = useState(false);
@@ -11,10 +18,9 @@ const MoviesCardList = ({ isSaved }) => {
   function setInitialNumber() {
     const windowWidth = window.innerWidth;
 
-    if (windowWidth >= 1024) {
+    if (windowWidth >= 1280) {
       setAmountOfCards(12)
-    };
-    if ((windowWidth >= 768) && (windowWidth < 1024)) {
+    } else if ((windowWidth >= 768) && (windowWidth <= 1279)) {
       setAmountOfCards(8)
     };
     if (windowWidth < 768) {
@@ -24,12 +30,19 @@ const MoviesCardList = ({ isSaved }) => {
   }
 
   function addCards() {
-
-    setAmountOfCards(amountOfCards + 3);
+    const width = window.innerWidth;
+    if (width >= 1280) {
+      setAmountOfCards(amountOfCards + 4);
+    } else if ((width >= 769) && (width <= 1279)) {
+      setAmountOfCards(amountOfCards + 3);
+    } else if (width <= 768) {
+      setAmountOfCards(amountOfCards + 2);
+    }
   }
 
   function checkIsAllCards() {
-
+    console.log(films.length);
+    console.log(amountOfCards);
     films.length < amountOfCards
       ?
       setIsAllCards(true)
@@ -42,7 +55,7 @@ const MoviesCardList = ({ isSaved }) => {
 
     checkIsAllCards();
 
-  })
+  }, [])
 
   useEffect(() => {
 
@@ -50,21 +63,35 @@ const MoviesCardList = ({ isSaved }) => {
 
   }, [])
 
+  useEffect(() => {
+    window.addEventListener('resize', setInitialNumber);
+    return () => window.removeEventListener('resize', setInitialNumber);
+  });
+
   return (
     <section className="cards">
       <ul className="cards__list">
         {films.slice(0, amountOfCards).map((film) => (
-          <li className="cards__element" key={film.id}>
+          <li className="cards__element" key={film.movieId}>
             <MoviesCard
-              key={film.id}
+              key={film.movieId}
               film={film}
-              isSaved={isSaved}
+              saveMovies={saveMovies}
+              savedFilms={savedFilms}
+              deleteMovie={deleteMovie}
+              films={films}
             />
           </li>
         ))}
       </ul>
 
-      <button className="cards__more" type="button" onClick={addCards} hidden={isAllCards}>Ещё</button>
+      {pathname === '/movies'
+        &&
+        <button 
+        className="cards__more" 
+        type="button" 
+        onClick={addCards} 
+        hidden={isAllCards}>Ещё</button>}
 
     </section>
   );

@@ -3,6 +3,7 @@
     flex-direction: column;
     position: relative;
     margin-bottom: 34px;
+    width: 300px;
 }
 
 .card__info {
@@ -39,26 +40,14 @@
 
 .card__container {
     position: relative;
-}
 
-.card__image:hover {
-    cursor: pointer;
-}
-
-.card__image:hover+.card__button_unsaved {
-    display: block;
-    cursor: pointer;
-}
-
-.card__button_unsaved:hover {
-    cursor: pointer;
-    display: block;
 }
 
 .card__image {
-    max-width: 300px;
     position: relative;
     border-radius: 6px;
+    width: 300px;
+    height: 168px;
 }
 
 .card__button_unsaved {
@@ -69,14 +58,11 @@
     width: 72px;
     height: 21px;
     background-color: #F9F9F9;
+    background-image: url('../../images/save.svg');
+    background-repeat: no-repeat;
     border-radius: 30px;
     font-size: 10px;
     line-height: 21px;
-    display: none;
-}
-
-.card__button_unsaved:before {
-    content: 'Сохранить';
 }
 
 .card__container {
@@ -96,11 +82,6 @@
     background-color: #FF4062;
 }
 
-.card__button_saved:hover {
-    cursor: pointer;
-    opacity: .7;
-}
-
 .card__button_remove {
     position: absolute;
     top: 10px;
@@ -113,15 +94,6 @@
     border-radius: 50%;
 }
 
-.card__button_remove:hover {
-    cursor: pointer;
-    opacity: .7;
-}
-
-.card__more:hover{
-    cursor: pointer;
-    opacity: .7;
-}
 
 @media screen and (min-width: 768px) {
 
@@ -141,6 +113,10 @@
         max-width: 339px;
     }
 
+    .card__image:hover {
+        cursor: pointer;
+    }
+
     .card__button_unsaved {
         top: 14px;
         right: 14px;
@@ -154,6 +130,30 @@
     .card__button_remove {
         top: 14px;
         right: 14px;
+    }
+
+    .card__image:hover+.card__button_unsaved {
+        display: block;
+        cursor: pointer;
+    }
+
+    .card__button_unsaved:hover {
+        cursor: pointer;
+        display: block;
+    }
+
+    .card__button_unsaved {
+        display: none;
+    }
+
+    .card__button_saved:hover {
+        cursor: pointer;
+        opacity: .7;
+    }
+
+    .card__button_remove:hover {
+        cursor: pointer;
+        opacity: .7;
     }
 
 }

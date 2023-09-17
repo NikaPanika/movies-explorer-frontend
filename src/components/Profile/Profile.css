@@ -66,6 +66,7 @@
 .profile__buttons {
     display: flex;
     flex-direction: column;
+    margin-bottom: 40px;
 }
 
 .profile__edit-button {
@@ -79,6 +80,7 @@
     margin: 0 auto;
     color: black;
 }
+
 .profile__edit-button:hover {
     cursor: pointer;
     opacity: 0.7;
@@ -115,6 +117,17 @@
     padding-bottom: 14px;
     min-width: 260px;
     margin-bottom: 50px;
+}
+
+.profile__save-button:disabled {
+    background-color: #E8E8E8;
+    color: black;
+    border: none;
+}
+
+.profile__save-button:disabled:hover {
+    cursor: auto;
+    opacity: 1;
 }
 
 .profile__save-button:hover {

@@ -104,10 +104,10 @@
 .search__ellipse {
     position: absolute;
     inset: 0;
-    background-color: #2BE080;
+    background-color: #EBEBEB ;
     border-radius: 16px;
     transition: .6s;
-    transform: scale(-1, -1);
+    transform: scale(1, 1);
 }
 
 .search__ellipse::before {
@@ -122,7 +122,7 @@
 }
 
 .search__checkbox:checked+.search__ellipse {
-    background-color: #EBEBEB;
+    background-color: #2BE080;
 }
 
 .search__checkbox:checked+.search__ellipse::before {

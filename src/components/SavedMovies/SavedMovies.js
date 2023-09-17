@@ -1,13 +1,14 @@
 import './SavedMovies'
 import { useState, useEffect } from 'react';
 import mainApi from '../../utils/MainApi';
-
+import { useLocation } from 'react-router-dom';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 
 
 const SavedMovies = () => {
+    const { pathname } = useLocation();
 
     const [preloader, setPreloader] = useState(false);
     const [movieError, setMovieError] = useState('');
@@ -17,14 +18,14 @@ const SavedMovies = () => {
 
     useEffect(() => {
         setIsOn(false);
-   
+
         mainApi
             .getMovies()
             .then((data) => {
+                console.log(data)
                 setAllSavedFilms(data);
                 console.log(data);
                 console.log(isOn);
-                setShortFilms(isOn);
             })
             .catch((err) => {
                 setMovieError(`Ошибка сервера ${err}`);
@@ -35,11 +36,19 @@ const SavedMovies = () => {
 
     function handleGetMovies(inputSearch) {
         console.log(inputSearch);
+        setFilmsInputSearch(inputSearch);
         mainApi
             .getMovies()
             .then((data) => {
                 let filteredData = data.filter(({ nameRU }) => nameRU.toLowerCase().includes(inputSearch.toLowerCase()));
-                setAllSavedFilms(filteredData);
+                if (isOn) {
+                    const shortFilms = filteredData.filter(({ duration }) => duration <= 40);
+                    console.log(shortFilms);
+                    setAllSavedFilms(shortFilms);
+                } else{
+                    setAllSavedFilms(filteredData);
+                }
+                
 
             })
             .catch((err) => {
@@ -53,6 +62,8 @@ const SavedMovies = () => {
             .then(() => mainApi.getMovies()
                 .then((data) => {
                     setAllSavedFilms(data);
+                    console.log(filmsInputSearch);
+                    handleGetMovies(filmsInputSearch);
                 })
                 .catch(() => {
                     setMovieError('Во время получения обновленных данных.');
@@ -61,45 +72,50 @@ const SavedMovies = () => {
                 setMovieError('Во время удаления фильма произошла ошибка.');
             })
     }
-    function setShortFilms(isOn) {
-        console.log(isOn);
-        console.log(localStorage.getItem('short-saved-films'))
-        if (isOn) {
+
+    function setShortFilms(on) {
+        console.log(on);
+        if (on) {
             const shortFilms = allSavedfilms.filter(({ duration }) => duration <= 40);
             console.log(shortFilms);
             setAllSavedFilms(shortFilms);
         } else {
-            handleGetMovies(filmsInputSearch)
+            mainApi
+            .getMovies()
+            .then((data) => {
+                let filteredData = data.filter(({ nameRU }) => nameRU.toLowerCase().includes(filmsInputSearch.toLowerCase()));
+                console.log(data)
+                setAllSavedFilms(filteredData);
+                console.log(data);
+                console.log(isOn);
+            })
+            .catch((err) => {
+                setMovieError(`Ошибка сервера ${err}`);
+            });
         }
     }
 
 
-    function handleOnChange() {
-        console.log(isOn);
-        console.log(localStorage.getItem('short-saved-films'));
-        if (isOn) {
-            setIsOn(false);
-            localStorage.setItem('short-saved-films', false);
-            setShortFilms(false);
-        } else {
+    function handleOnChange(checkbox) {
+        console.log(checkbox);
+        if (checkbox) {
             setIsOn(true);
-            localStorage.setItem('short-saved-films', true);
             console.log(isOn)
             setShortFilms(true);
+        } else {
+            setIsOn(false);
+            setShortFilms(false);
         }
         console.log(isOn);
-
-
     }
-    /* 84955545061 */
+
     return (
         <main className="movies-saved">
-            <SearchForm handleGetMovies={handleGetMovies} filmsInputSearch={filmsInputSearch} handleOnChange={handleOnChange} isOn={isOn} />
+            <SearchForm handleGetMovies={handleGetMovies} filmsInputSearch={filmsInputSearch} handleOnChange={handleOnChange} isOn={isOn}/>
             {preloader && <Preloader />}
             {movieError && <div className="movies-saved__text-error">{movieError}</div>}
             {!preloader && !movieError && allSavedfilms && (
                 <MoviesCardList
-
                     films={allSavedfilms}
                     deleteMovie={deleteMovie} />
             )}

@@ -1,21 +1,19 @@
 import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-function MoviesCard({
-    film,
+function MoviesCard({ film,
     saveMovies,
     savedFilms,
     deleteMovie,
     films
+
 }) {
 
     const { pathname } = useLocation();
     const [isAdd, setIsAdd] = useState(false);
 
     function handleFavoriteToogle() {
-        const newFavorite = !isAdd;
-        console.log(film);
         if (!film.isAdd) {
             film.isAdd = true;
             setIsAdd(true)
@@ -59,10 +57,11 @@ function MoviesCard({
                 <img className="card__image" src={film.image} alt={film.nameRU} onClick={openVideo} />
 
                 {pathname === '/movies' ?
-                    <button className={`card__button
-                ${film.isAdd ? ' card__button_saved'
-                            : 'card__button_unsaved'}`} type="button" onClick={handleFavoriteToogle}>
-                    </button>
+                    film.isAdd ?
+                        <button className='card__button card__button_saved' type="button" onClick={handleFavoriteToogle}></button>
+                        :
+                        <button className='card__button card__button_unsaved' type="button" onClick={handleFavoriteToogle}></button>
+
                     : <button className="card__button  card__button_remove"
                         type="button" onClick={handleDelete}>
                     </button>}

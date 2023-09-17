@@ -9,26 +9,31 @@ import Preloader from '../Preloader/Preloader';
 
 const Movies = () => {
 
-    const [isShortFilms, setIsShortFilms] = useState(false);
     const [preloader, setPreloader] = useState(false);
     const [isOn, setIsOn] = useState(false);
     const [movieError, setMovieError] = useState('');
     const [filmsInputSearch, setFilmsInputSearch] = useState('');
     const [films, setFilms] = useState(JSON.parse(localStorage.getItem('all-films')));
     const [savedFilms, setSavedFilms] = useState(JSON.parse(localStorage.getItem('saved-films')));
+    const [shortFilmsSave, setShortFilmsSave] = useState(JSON.parse(localStorage.getItem('saved-films')));
 
     useEffect(() => {
         mainApi
-        .getMovies()
-        .then((data) => {
-            setSavedFilms(data);
-        })
-        .catch((err) => {
-            setMovieError(`Ошибка сервера ${err}`);
-        });
-      
-        handleGetMovies(localStorage.getItem('searched-films'))
-    
+            .getMovies()
+            .then((data) => {
+                setSavedFilms(data);
+
+                console.log(data);
+                localStorage.setItem('saved-films', JSON.stringify(data))
+            }).then(() =>
+                handleGetMovies(localStorage.getItem('searched-films'))
+            )
+            .catch((err) => {
+                setMovieError(`Ошибка сервера ${err}`);
+            });
+
+        //handleGetMovies(localStorage.getItem('searched-films'))
+
         const localStorageFilms = localStorage.getItem('all-films');
 
         if (localStorageFilms) {
@@ -42,6 +47,7 @@ const Movies = () => {
         if (localStorageFilmsInputSearch) {
             setFilmsInputSearch(localStorageFilmsInputSearch);
         }
+
     }, []);
 
     function handleGetMovies(inputSearch) {
@@ -74,15 +80,21 @@ const Movies = () => {
                         isAdd: false
                     }
                 })
-                console.log(movies);
-                console.log(inputSearch)
+
+
                 let filteredData = movies.filter(({ nameRU }) => nameRU.toLowerCase().includes(inputSearch.toLowerCase()));
+
+                if (filteredData.length === 0) {
+                    setMovieError('Ничего не найдено');
+                    console.log('Ничего не найдено')
+                }
                 localStorage.setItem('all-films', JSON.stringify(filteredData));
                 localStorage.setItem('searched-films', inputSearch);
-                console.log(savedFilms)
+                console.log(savedFilms);
                 if (savedFilms) {
+                    let newSavedFilms = JSON.parse(localStorage.getItem('saved-films'));
                     let moviesWithIsSaved = filteredData.map((item) => {
-                        let savedItem = savedFilms.find(movie => {
+                        let savedItem = newSavedFilms.find(movie => {
                             return movie.movieId === item.movieId
                         });
                         if (savedItem) {
@@ -93,11 +105,18 @@ const Movies = () => {
                     });
                     console.log(moviesWithIsSaved);
                     setFilms(moviesWithIsSaved);
+                    setShortFilmsSave(moviesWithIsSaved);
+                    console.log(localStorage.getItem('short-films'))
+                    if (JSON.parse(localStorage.getItem('short-films'))) {
+                        const shortFilms = moviesWithIsSaved.filter(({ duration }) => duration <= 40);
+                        setFilms(shortFilms);
+                    } else {
+                        setFilms(moviesWithIsSaved);
+                    }
+
                 } else {
                     setFilms(filteredData);
-                }
-                if(localStorage.getItem('short-films') === 'true'){
-                    setShortFilms(JSON.parse(localStorage.getItem('short-films')))
+                    setShortFilmsSave(filteredData);
                 }
 
             }).catch(() => {
@@ -117,13 +136,13 @@ const Movies = () => {
     function setShortFilms(isOn) {
         console.log(isOn);
         console.log(localStorage.getItem('short-films'))
-        if (isOn) {
+        if (JSON.parse(localStorage.getItem('short-films'))) {
             localStorage.setItem('short-films', true);
             const shortFilms = films.filter(({ duration }) => duration <= 40);
             setFilms(shortFilms);
         } else {
             localStorage.setItem('short-films', false);
-            handleGetMovies(localStorage.getItem('searched-films'));
+            setFilms(shortFilmsSave);
         }
     }
 
@@ -164,7 +183,7 @@ const Movies = () => {
             })
     }
 
- 
+
 
     function handleOnChange() {
         console.log(isOn);
@@ -191,14 +210,15 @@ const Movies = () => {
     }, [])
 
     useEffect(() => {
-        if(films){
+        if (films) {
             setShortFilms(isOn);
         }
     }, [isOn])
 
+
     return (
         <main className="movies">
-            <SearchForm handleGetMovies={handleGetMovies} filmsInputSearch={filmsInputSearch} handleOnChange={handleOnChange} isOn={isOn}/>
+            <SearchForm handleGetMovies={handleGetMovies} filmsInputSearch={filmsInputSearch} handleOnChange={handleOnChange} isOn={isOn} />
             {preloader && <Preloader />}
             {movieError && <div className="movies__text-error">{movieError}</div>}
             {!preloader && !movieError && films && (
@@ -206,7 +226,8 @@ const Movies = () => {
                     savedFilms={savedFilms}
                     saveMovies={saveMovies}
                     films={films}
-                    deleteMovie={deleteMovie} />
+                    deleteMovie={deleteMovie}
+                    isOn={isOn} />
             )}
         </main>
     );

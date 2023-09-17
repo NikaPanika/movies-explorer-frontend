@@ -12,7 +12,10 @@ const Profile = ({ handleSignOut, setCurrentUser }) => {
     const currentUser = useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name);
     const [email, setEmail] = useState(currentUser.email);
+    const [prevName, setPrevName] = useState(currentUser.name);
+    const [prevEmail, setPrevEmail] = useState(currentUser.email);
     const [serverError, setServerError] = useState(true);
+    const [isDataChanged, setIsDataChanged] = useState(false);
 
     function handleSubmit(e) {
         console.log(name);
@@ -20,6 +23,7 @@ const Profile = ({ handleSignOut, setCurrentUser }) => {
         e.preventDefault();
         setIsAble(!isAble);
         setIsHidden(!isHidden);
+
         mainApi.updateUser({ name, email })
             .then((res) => {
                 setName(res.name);
@@ -35,6 +39,13 @@ const Profile = ({ handleSignOut, setCurrentUser }) => {
     function handleNameChange(e) {
         const value = e.target.value;
         setName(value);
+        if (value !== prevName) {
+            setIsHidden(true);
+            
+        } else {
+            setIsHidden(false);
+           
+        }
     }
 
     function handleEmailChange(evt) {
@@ -65,11 +76,17 @@ const Profile = ({ handleSignOut, setCurrentUser }) => {
         setServerError('');
     }, [])
 
+    useEffect(() => {
+        const isChanged =
+          name !== currentUser.name ||
+          email !== currentUser.email; // Пример проверки изменений, замените на свои условия
+          setIsDataChanged(isChanged);
+      }, [name, email, currentUser]);
     return (
         <main className="profile">
             <section className="profile__container">
 
-                <h1 className="profile__title">{`Привет, ${name || localStorage.getItem('user').name}`}</h1>
+                <h1 className="profile__title">{`Привет, ${name || ''}`}</h1>
                 <form className="profile__form" onSubmit={handleSaveClick}>
                     <fieldset className="profile__info">
                         <div className="profile__container-form">
@@ -109,7 +126,7 @@ const Profile = ({ handleSignOut, setCurrentUser }) => {
                         <button className="profile__edit-button" type='button' onClick={handleEditClick} hidden={isHidden}>Редактировать</button>
                         <NavLink className="profile__signout-button" hidden={isHidden} to='/' onClick={handleSignOut}>Выйти из аккаунта</NavLink>
                     </div>
-                    <button className="profile__save-button" type='submit' onClick={handleSubmit} hidden={!isHidden}>Сохранить</button>
+                    <button className="profile__save-button" type='submit' onClick={handleSubmit} hidden={!isHidden} disabled={!isDataChanged}>Сохранить</button>
                 </form>
             </section>
 

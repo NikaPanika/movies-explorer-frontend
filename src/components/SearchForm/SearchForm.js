@@ -1,10 +1,12 @@
 import './SearchForm.css';
 import { useState, useEffect } from 'react';
 import lens from '../../images/icon.svg';
+import { useLocation } from 'react-router-dom';
 
 const SearchForm = ({ handleGetMovies, filmsInputSearch, handleOnChange, isOn }) => {
-
+    const { pathname } = useLocation();
     const [inputSearch, setInputSearch] = useState('');
+    const [isChecked, setIsChecked] = useState(false);
 
     function handleInputChange(evt) {
         setInputSearch(evt.target.value);
@@ -19,6 +21,11 @@ const SearchForm = ({ handleGetMovies, filmsInputSearch, handleOnChange, isOn })
     useEffect(() => {
         setInputSearch(filmsInputSearch);
     }, [filmsInputSearch]);
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
+        handleOnChange(!isChecked); // Передаем обратное значение чекбокса в колбэк-функцию
+    };
+
 
     return (
         <section>
@@ -30,7 +37,12 @@ const SearchForm = ({ handleGetMovies, filmsInputSearch, handleOnChange, isOn })
                 </div>
                 <div className="search__short-films">
                     <label className="search__label">
-                        <input className="search__checkbox" type="checkbox" onChange={handleOnChange} value={isOn} checked={isOn} />
+                        {pathname === '/movies' ?
+                            <input className="search__checkbox" type="checkbox" onChange={handleOnChange} value={isOn} checked={isOn} />
+                            :
+                            <input className="search__checkbox" type="checkbox" onChange={handleCheckboxChange} value={isOn} checked={isOn} />
+                        }
+
                         <span className="search__ellipse" />
                     </label>
                     <p className="search__type">Короткометражки</p>

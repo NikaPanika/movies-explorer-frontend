@@ -95,6 +95,7 @@ function App() {
     localStorage.removeItem('user');
     localStorage.removeItem('all-movies');
     localStorage.removeItem('short-saved-films');
+    localStorage.removeItem('short-films')
     setIsLogged(false);
   }
 
